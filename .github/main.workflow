@@ -8,23 +8,25 @@ action "Shell Lint" {
   args = "entrypoint.sh"
 }
 
-action "Test" {
-  uses = "actions/bin/bats@master"
-  args = "test/*.bats"
-}
+# action "Test" {
+#   uses = "actions/bin/bats@master"
+#   args = "test/*.bats"
+# }
 
-action "Integration Test" {
-  uses = "./"
-  args = "version"
-}
+# action "Integration Test" {
+#   uses = "./"
+#   args = "version"
+# }
 
 action "Docker Lint" {
   uses = "docker://replicated/dockerfilelint"
   args = ["Dockerfile"]
 }
 
+
 action "Build" {
-  needs = ["Shell Lint", "Test", "Integration Test", "Docker Lint"]
+  # "Test", "Integration Test",
+  needs = ["Shell Lint", "Docker Lint"]
   uses = "actions/docker/cli@master"
   args = "build -t ssr ."
 }
