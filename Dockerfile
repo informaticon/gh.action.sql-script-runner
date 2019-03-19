@@ -14,7 +14,6 @@ LABEL com.github.actions.color="red"
 # COPY LICENSE README.md THIRD_PARTY_NOTICE.md /
 
 ENV DOCKERVERSION=18.06.1-ce
-RUN apt-get update
 
 # install curl
 RUN apt-get -y --no-install-recommends install curl
@@ -23,11 +22,10 @@ RUN apt-get -y --no-install-recommends install curl
 RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKERVERSION}.tgz
 RUN tar xzvf docker-${DOCKERVERSION}.tgz --strip 1 -C /usr/local/bin docker/docker
 RUN rm docker-${DOCKERVERSION}.tgz
-RUN rm -rf /var/lib/apt/lists/*
 
 # install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get update && apt-get install -y nodejs
+RUN apt-get update && apt-get -y --no-install-recommends install nodejs && rm -rf /var/lib/apt/lists/*
 RUN npm i -g @informaticon/devops.sql-script-runner
 
 COPY "entrypoint.sh" "/entrypoint.sh"
