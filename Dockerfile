@@ -20,8 +20,8 @@ RUN apt-get update \
   && tar xzvf docker-${DOCKERVERSION}.tgz --strip 1 -C /usr/local/bin docker/docker \
   && rm docker-${DOCKERVERSION}.tgz \
   && rm -rf /var/lib/apt/lists/* \
-  && npm i -g @informaticon/devops.sql-script-runner
+  && npm i @informaticon/devops.sql-script-runner
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["help"]
+CMD ["--help"]
