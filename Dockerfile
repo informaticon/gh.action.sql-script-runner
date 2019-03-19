@@ -1,4 +1,4 @@
-FROM node:10
+
 FROM openjdk:8
 FROM gcr.io/cloud-builders/gcloud-slim@sha256:7e910b97dd13d8e32acb3e53c5f4d2164c5ea8e93de1ea51e610a1112fa6308e
 
@@ -14,13 +14,21 @@ LABEL com.github.actions.color="red"
 # COPY LICENSE README.md THIRD_PARTY_NOTICE.md /
 
 ENV DOCKERVERSION=18.06.1-ce
-RUN apt-get update \
-  && apt-get -y --no-install-recommends install curl \
-  && curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKERVERSION}.tgz \
-  && tar xzvf docker-${DOCKERVERSION}.tgz --strip 1 -C /usr/local/bin docker/docker \
-  && rm docker-${DOCKERVERSION}.tgz \
-  && rm -rf /var/lib/apt/lists/* \
-  && npm i @informaticon/devops.sql-script-runner
+RUN apt-get update
+
+# install curl
+RUN apt-get -y --no-install-recommends install curl
+
+# install docker (google cloud)
+RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKERVERSION}.tgz
+RUN tar xzvf docker-${DOCKERVERSION}.tgz --strip 1 -C /usr/local/bin docker/docker
+RUN rm docker-${DOCKERVERSION}.tgz
+RUN rm -rf /var/lib/apt/lists/*
+
+# install nodejs
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get update && apt-get install -y nodejs
+RUN npm i -g @informaticon/devops.sql-script-runner
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 ENTRYPOINT ["/entrypoint.sh"]
