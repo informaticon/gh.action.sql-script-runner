@@ -1,0 +1,31 @@
+{
+  "name": "@informaticon/gh.action.sql-script-runner",
+  "version": "1.0.0",
+  "description": "``` workflow \"run sql scripts\" {   on = \"push\"   resolves = [\"execute scripts\"] }",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/informaticon/gh.action.sql-script-runner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/informaticon/gh.action.sql-script-runner/issues"
+  },
+  "homepage": "https://github.com/informaticon/gh.action.sql-script-runner#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
