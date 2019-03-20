@@ -30,7 +30,7 @@ RUN apt-get update && \
 RUN npm version
 
 # install script runner
-RUN npm i -g @informaticon/devops.sql-script-runner
+RUN npm i -g @informaticon/devops.sql-script-runner@2.0.1
 
 # Install OpenJDK-8
 RUN apt-get update && \
