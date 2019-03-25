@@ -10,7 +10,6 @@ LABEL com.github.actions.name="GitHub Action for GCP Script execution"
 LABEL com.github.actions.description="Wraps the ssr CLI to enable common ssr commands."
 LABEL com.github.actions.icon="package"
 LABEL com.github.actions.color="red"
-# COPY LICENSE README.md THIRD_PARTY_NOTICE.md /
 
 ENV DOCKERVERSION=18.06.1-ce
 
@@ -48,6 +47,7 @@ RUN apt-get update && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 RUN export JAVA_HOME
 
+# test java isntallation
 RUN java -version
 
 COPY "entrypoint.sh" "/entrypoint.sh"
